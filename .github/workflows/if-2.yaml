@@ -5,8 +5,8 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-    - name: exit1
-      run: exit1
+    - name: exit 1
+      run: exit 1 
     - name: echo
       if: always()
       run: echo hello
