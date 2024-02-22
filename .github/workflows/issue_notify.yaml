@@ -1,8 +1,8 @@
 name: issue-notify
 
 on:
-  issue:
-    types: [opend]
+  issues:
+    types: [opened]
 
 jobs:
   get-keyword:
