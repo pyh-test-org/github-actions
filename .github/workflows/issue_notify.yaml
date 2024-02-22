@@ -31,7 +31,11 @@ jobs:
     needs: [get-keyword]
     if: needs.get-keyword.outputs.level != 'Undefined'
     runs-on: ubuntu-latest
-    environment: ${{ needs.get-keyword.outputs.level }}
+    # environment: ${{ needs.get-keyword.outputs.level }} // 어떤 environment인지 알 수 없음
+    strategy:
+      matrix:
+        environment: ["${{ needs.get-keyword.outputs.level }}"]
+    environment: ${{ matrix.environment }}
     steps:
     - name: slack
       uses: slackapi/slack-github-action@v1.24.0
@@ -42,7 +46,7 @@ jobs:
               {
                 "pretext": "issue alert message",
                 "color": "28a745",
-                "fileds": [
+                "fields": [
                   {
                     "title": "Level: ${{ needs.get-keyword.outputs.level }}",
                     "short": true,
